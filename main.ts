@@ -1,10 +1,10 @@
 input.onButtonPressed(Button.B, function () {
-    basic.showString("join")
+    basic.showString("join lorabit_demo_002")
     loraBit.reset()
     loraBit.param_OTAA(
-    "00F9B0FE8CD7531B",
+    "0008420454B8BE23",
     "70B3D57ED00219AA",
-    "C8A5E1A28B4EA1FD2130C1C440B2EE4E"
+    "10D33F399DB357CDE2BF02599222E28D"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
     basic.clearScreen()
