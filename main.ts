@@ -1,5 +1,4 @@
-input.onButtonPressed(Button.B, function () {
-    basic.showString("join lorabit_demo_002")
+input.onButtonPressed(Button.AB, function () {
     loraBit.reset()
     loraBit.param_OTAA(
     "0008420454B8BE23",
@@ -7,6 +6,7 @@ input.onButtonPressed(Button.B, function () {
     "10D33F399DB357CDE2BF02599222E28D"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
+    basic.showString("join lorabit_demo_002")
     basic.clearScreen()
 })
 loraBit.whenReceived(function () {
@@ -30,6 +30,9 @@ loraBit.whenReceived(function () {
 input.onButtonPressed(Button.A, function () {
     sos = true
 })
+input.onGesture(Gesture.Shake, function () {
+    sos = true
+})
 let result = 0
 let sos = false
 led.setBrightness(20)
@@ -45,9 +48,10 @@ cayenneLPP.add_sensor(LPP_Bit_Sensor.Light)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.LED_Brightness)
 loraBit.param_Config(
 5,
-2,
+7,
 loraBit_ADR.On
 )
+basic.clearScreen()
 basic.forever(function () {
     while (!(loraBit.available())) {
         basic.pause(100)
@@ -61,9 +65,10 @@ basic.forever(function () {
             . . # # #
             # # # # #
             `).scrollImage(1, 50)
+        loraBit.sleep()
     } else {
         if (input.runningTime() > interval) {
-            interval = input.runningTime() + 30000
+            interval = input.runningTime() + 60000
             loraBit.sendPacket(loraBit_Confirmed.Uncomfirmed, 99, cayenneLPP.lpp_upload())
             loraBit.sleep()
         }
